@@ -27,8 +27,6 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 
-AUTH_USER_MODEL = 'bookstore.usuario'
-
 # Application definition
 
 INSTALLED_APPS = (
