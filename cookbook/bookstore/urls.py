@@ -5,7 +5,6 @@ from bookstore import views
 urlpatterns = patterns('bookstore.views',
                        url(r'^principal/',"mainPage",name="index"),
                        url(r'^admnistration/',"adminPage",name="administrator"),
-                       url()
                       
                       
                       
