@@ -170,7 +170,7 @@ def listBooks(request):
     return render(request,"list.html",{'type':'Book','list':books})
 
 
-def changeAuthor(request,pk):
+def changeBook(request,pk):
     if request.method == 'POST':
         book = get_object_or_404(Book,id=pk)
         form = BookForm(data=request.POST, instance=book)
