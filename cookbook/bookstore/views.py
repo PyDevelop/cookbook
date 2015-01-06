@@ -5,11 +5,11 @@ from django.forms import *
 # Create your views here.
 
 def principal(request):
-    render(request,"principal.html")
+    return render(request,"principal.html")
     
 @login_required    
 def administrator(request):
-    render(request,"administration.html")
+    return render(request,"administration.html")
     
 
 #book -editor - category -author
@@ -55,6 +55,7 @@ def changeCategory(request,pk):
             message = form.errors
     else:
         #deberia redirigir a la pagina de listados
+        return render(request,"principal.html")
 
         
 # Editor management
@@ -97,6 +98,7 @@ def changeEditor(request,pk):
             message = form.errors
     else:
         #deberia redirigir a la pagina de listados
+        return render(request,"principal.html")
 
 
 
@@ -140,6 +142,7 @@ def changeAuthor(request,pk):
             message = form.errors
     else:
         #deberia redirigir a la pagina de listados
+        return render(request,"principal.html")
 
 #Book management
 
@@ -181,5 +184,6 @@ def changeBook(request,pk):
             message = form.errors
     else:
         #deberia redirigir a la pagina de listados
+        return render(request,"principal.html")
 
 
