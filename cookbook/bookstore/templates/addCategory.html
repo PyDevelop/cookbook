@@ -6,7 +6,7 @@
 {{ message}}
 <form method ="POST" action={% url 'addCategory' %}>
 {%csrf_token%}
-{{form.as_p}}
+{{formulario.as_p}}
     <input type="submit" value="Create"/>
 </form>
 
