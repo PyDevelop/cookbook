@@ -1,6 +1,12 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from bookstore.forms import *
+#from bookstore.forms import *
+from bookstore.forms import CategoryForm
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+
 
 # Create your views here.
 
@@ -18,16 +24,25 @@ def administrator(request):
 #Category management
     
 def addCategory(request):
+    if request.method == "POST":
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('principal'))
+    else:
+        form = CategoryForm()
+    return render_to_response("addCategory.html",{'formulario': form, 'type':'Category'},context_instance=RequestContext(request))
+    
+    '''        
     form = CategoryForm(request.POST or None)
     if form.is_valid():
         form.save()
         message = "New category added successufully"
-    else:
-        form = CategoryForm()
-        message = form.errors
+    message = form.errors
+    form = CategoryForm()
     return render(request, "addCategory.html",{'form': form, 'type':'Category','message':message})
 
-
+'''
 def deleteCategory(request,pk):
     instance = get_object_or_404(Category,id=pk)
     #podria poner elementos como si tiene dependencias o no, bien podria ser un metodo de clase
