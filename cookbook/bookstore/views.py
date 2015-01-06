@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.forms import *
+from bookstore.forms import *
 
 # Create your views here.
 
@@ -24,7 +24,7 @@ def addCategory(request):
         message = "New category added successufully"
     else:
         message = form.errors
-    return render(request, "addCategory.html",{'form': form, 'message':message})
+    return render(request, "addCategory.html",{'form': form, 'type':'Category','message':message})
 
 
 def deleteCategory(request,pk):
@@ -114,7 +114,7 @@ def addAuthor(request):
     return render(request, "addAuthor.html",{'form': form, 'message':message})
 
 
-def deleteEditor(request,pk):
+def deleteAuthor(request,pk):
     instance = get_object_or_404(Author,id=pk)
     #podria poner elementos como si tiene dependencias o no, bien podria ser un metodo de clase
     return render(request,"confirmation.html",{'type':'Author','element':instance})
