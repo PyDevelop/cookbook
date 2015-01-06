@@ -1,24 +1,25 @@
-from django import forms
-from models import *
+from django.forms import ModelForm
+from bookstore.models import *
 
-class EditorForm(forms.Form):
+class EditorForm(ModelForm):
     class Meta:
         model = Editor
         exclude = ('status',)
         
-class AuthorForm(forms.Form):
+class AuthorForm(ModelForm):
     class Meta:
         model = Author
         exclude = ('status',)
         
     
-class CategoryForm(forms.Form):
+class CategoryForm(ModelForm):
     class Meta:
         model = Category
+        fields = "__all__"
         exclude = ('status',)
         
         
-class BookForm(forms.Form):
+class BookForm(ModelForm):
     class Meta:
         model = Book
         exclude = ('status',)
