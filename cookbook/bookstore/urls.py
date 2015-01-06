@@ -30,7 +30,7 @@ urlpatterns = patterns('bookstore.views',
                        url(r'^changeEditor/(?P<pk>\d+)',"changeEditor",name="changeEditor"),
                        url(r'^changeCategory/(?P<pk>\d+)',"changeCategory",name="changeCategory"),
                        
-                       url(r'^admnistration/',"adminPage",name="administrator"),
+                       url(r'^admnistration/',"administrator",name="administrator"),
                       
                       
                       

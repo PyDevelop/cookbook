@@ -6,7 +6,8 @@
 {{ message}}
 <form method ="POST" action={% url 'addCategory' %}>
 {%csrf_token%}
-{{form}}
+{{form.as_p}}
+    <input type="submit" value="Create"/>
 </form>
 
 {% endblock content%}

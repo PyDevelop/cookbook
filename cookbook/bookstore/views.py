@@ -23,6 +23,7 @@ def addCategory(request):
         form.save()
         message = "New category added successufully"
     else:
+        form = CategoryForm()
         message = form.errors
     return render(request, "addCategory.html",{'form': form, 'type':'Category','message':message})
 
