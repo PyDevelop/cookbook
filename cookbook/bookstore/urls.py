@@ -4,7 +4,7 @@ from bookstore import views
 #patron -vista que lo atiende-nombre
 urlpatterns = patterns('bookstore.views',
                        #main page
-                       url(r'^principal/',"mainPage",name="index"),
+                       url(r'^principal/',"principal",name="principal"),
                        
                        #listing views
                        url(r'^bookcatalog',"listBooks",name="catalog"),
