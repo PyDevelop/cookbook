@@ -31,18 +31,8 @@ def addCategory(request):
             return HttpResponseRedirect(reverse('principal'))
     else:
         form = CategoryForm()
-    return render_to_response("addCategory.html",{'formulario': form, 'type':'Category'},context_instance=RequestContext(request))
+    return render_to_response("addCategory.html",{'formulario': form, 'type':'Category','action':'add'},context_instance=RequestContext(request))
     
-    '''        
-    form = CategoryForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        message = "New category added successufully"
-    message = form.errors
-    form = CategoryForm()
-    return render(request, "addCategory.html",{'form': form, 'type':'Category','message':message})
-
-'''
 def deleteCategory(request,pk):
     instance = get_object_or_404(Category,id=pk)
     #podria poner elementos como si tiene dependencias o no, bien podria ser un metodo de clase
@@ -71,7 +61,7 @@ def changeCategory(request,pk):
             message = form.errors
     else:
         #deberia redirigir a la pagina de listados
-        return render(request,"principal.html")
+        return render(request,"principal.html",{'form':form, 'type':'Category', 'action':'Change'})
 
         
 # Editor management
@@ -83,13 +73,13 @@ def addEditor(request):
         message = "New editor added successufully"
     else:
         message = form.errors
-    return render(request, "addEditor.html",{'form': form, 'message':message})
+    return render(request, "addEditor.html",{'form': form, 'message':message,'action':'add'})
 
 
 def deleteEditor(request,pk):
     instance = get_object_or_404(Editor,id=pk)
     #podria poner elementos como si tiene dependencias o no, bien podria ser un metodo de clase
-    return render(request,"confirmation.html",{'type':'Editor','element':instance})
+    return render(request,"confirmation.html",{'type':'Editor','element':instance,'action':'Delete Confirmation'})
 
 def confirmDelete(request,pk):
     instance = get_object_or_404(Editor,id=pk)
@@ -100,7 +90,7 @@ def confirmDelete(request,pk):
         
 def listEditors(request):
     editors = Editor.objects.all()
-    return render(request,"list.html",{'type':'Editor','list':editors})
+    return render(request,"list.html",{'type':'Editor','list':editors,'action':'List'})
 
 
 def changeEditor(request,pk):
@@ -114,7 +104,7 @@ def changeEditor(request,pk):
             message = form.errors
     else:
         #deberia redirigir a la pagina de listados
-        return render(request,"principal.html")
+        return render(request,"principal.html",{'form':form,'action':'Change','type':'Editor'})
 
 
 
@@ -127,13 +117,13 @@ def addAuthor(request):
         message = "New author added successufully"
     else:
         message = form.errors
-    return render(request, "addAuthor.html",{'form': form, 'message':message})
+    return render(request, "addAuthor.html",{'form': form, 'message':message,,'action':'add'})
 
 
 def deleteAuthor(request,pk):
     instance = get_object_or_404(Author,id=pk)
     #podria poner elementos como si tiene dependencias o no, bien podria ser un metodo de clase
-    return render(request,"confirmation.html",{'type':'Author','element':instance})
+    return render(request,"confirmation.html",{'type':'Author','element':instance,'action':'Delete confirmation'})
 
 def confirmDelete(request,pk):
     instance = get_object_or_404(Author,id=pk)
@@ -144,7 +134,7 @@ def confirmDelete(request,pk):
         
 def listAuthors(request):
     authors = Author.objects.all()
-    return render(request,"list.html",{'type':'Author','list':authors})
+    return render(request,"list.html",{'type':'Author','list':authors,'action':'List'})
 
 
 def changeAuthor(request,pk):
@@ -158,7 +148,7 @@ def changeAuthor(request,pk):
             message = form.errors
     else:
         #deberia redirigir a la pagina de listados
-        return render(request,"principal.html")
+        return render(request,"principal.html",'type':'Author','action':'Change')
 
 #Book management
 
@@ -169,13 +159,13 @@ def addBook(request):
         message = "New book added successufully"
     else:
         message = form.errors
-    return render(request, "addBook.html",{'form': form, 'message':message})
+    return render(request, "addBook.html",{'form': form, 'message':message,,'action':'add'})
 
 
 def deleteBook(request,pk):
     instance = get_object_or_404(Book,id=pk)
     #podria poner elementos como si tiene dependencias o no, bien podria ser un metodo de clase
-    return render(request,"confirmation.html",{'type':'Book','element':instance})
+    return render(request,"confirmation.html",{'type':'Book','element':instance,'action':'Delete confirmation'})
 
 def confirmDelete(request,pk):
     instance = get_object_or_404(Book,id=pk)
@@ -186,7 +176,7 @@ def confirmDelete(request,pk):
         
 def listBooks(request):
     books= Book.objects.all()
-    return render(request,"list.html",{'type':'Book','list':books})
+    return render(request,"list.html",{'type':'Book','list':books,'action':'List'})
 
 
 def changeBook(request,pk):
@@ -200,6 +190,6 @@ def changeBook(request,pk):
             message = form.errors
     else:
         #deberia redirigir a la pagina de listados
-        return render(request,"principal.html")
+        return render(request,"principal.html",{'type':'Book', 'action':'Change'})
 
 
