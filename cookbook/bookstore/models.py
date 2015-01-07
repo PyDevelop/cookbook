@@ -1,7 +1,7 @@
 from django.db import models
 
 class Editor(models.Model):
-    name = models.CharField(max_length=20);
+    name = models.CharField(max_length=20,blank=False);
     status= models.BooleanField(default=False);
     
     
