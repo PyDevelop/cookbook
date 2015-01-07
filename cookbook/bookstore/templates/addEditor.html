@@ -1,6 +1,4 @@
 {% extends 'base.html' %}
-{% block title %}Bookstore-{{type}}{% endblock %}
-
 {% block content %}
     <form action={% url 'addEditor' %} method="POST"> 
         {{form.as_p}}

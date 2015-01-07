@@ -1,7 +1,4 @@
 {%extends "base.html"%}
-
-{%block title%}Bookstore-add {{type}} {%endblock title%}
-
 {%block content%}
 {{ message}}
 <form method ="POST" action={% url 'addCategory' %}>

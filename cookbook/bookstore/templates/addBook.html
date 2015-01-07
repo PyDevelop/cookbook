@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% block title %}Bookstore-add {{type}} {% endblock title%}
 {% block content%}
     <form action={% url 'addBook' %}>{% csrf_token%}
         {{form.as_p}}
