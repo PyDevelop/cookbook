@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-
+from bookstore.models import *
 
 # Create your views here.
 
@@ -47,7 +47,7 @@ def confirmDelete(request,pk):
         
 def listCategories(request):
     categories = Category.objects.all()
-    return render(request,"list.html",{'type':'Category','list':categories})
+    return render(request,"listCategories.html",{'type':'Category','list':categories})
 
 
 def changeCategory(request,pk):
@@ -57,11 +57,12 @@ def changeCategory(request,pk):
         if form.is_valid():
             form.save()
             message = "changes saved"
+            return HttpResponseRedirect(reverse('listCategories'))
         else:
-            message = form.errors
+            message = form.errors 
     else:
         #deberia redirigir a la pagina de listados
-        return render(request,"principal.html",{'form':form, 'type':'Category', 'action':'Change'})
+        return render(request,"change.html",{'form':form, 'type':'Category', 'action':'Change'})
 
         
 # Editor management
@@ -117,7 +118,7 @@ def addAuthor(request):
         message = "New author added successufully"
     else:
         message = form.errors
-    return render(request, "addAuthor.html",{'form': form, 'message':message,,'action':'add'})
+    return render(request, "addAuthor.html",{'form': form, 'message':message,'action':'add'})
 
 
 def deleteAuthor(request,pk):
@@ -148,7 +149,7 @@ def changeAuthor(request,pk):
             message = form.errors
     else:
         #deberia redirigir a la pagina de listados
-        return render(request,"principal.html",'type':'Author','action':'Change')
+        return render(request,"principal.html",{'type':'Author','action':'Change'})
 
 #Book management
 
@@ -159,7 +160,7 @@ def addBook(request):
         message = "New book added successufully"
     else:
         message = form.errors
-    return render(request, "addBook.html",{'form': form, 'message':message,,'action':'add'})
+    return render(request, "addBook.html",{'form': form, 'message':message,'action':'add'})
 
 
 def deleteBook(request,pk):
