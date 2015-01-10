@@ -135,7 +135,7 @@ def confirmDelete(request,pk):
         
 def listAuthors(request):
     authors = Author.objects.all()
-    return render(request,"list.html",{'type':'Author','list':authors,'action':'List'})
+    return render(request,"listAuthors.html",{'type':'Author','list':authors,'action':'List'})
 
 
 def changeAuthor(request,pk):
