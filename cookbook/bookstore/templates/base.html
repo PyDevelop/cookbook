@@ -8,6 +8,11 @@
     </head>
     <body>
         <nav></nav>
+        <div>
+            {% if message %}
+                <p>{{message}}</p>
+            {%endif%}
+        </div>
         
         <div>
             {% block content%} {% endblock content%}
