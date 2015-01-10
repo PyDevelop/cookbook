@@ -118,7 +118,7 @@ def addAuthor(request):
         message = "New author added successufully"
     else:
         message = form.errors
-    return render(request, "addAuthor.html",{'form': form, 'message':message,'action':'add'})
+    return render(request, "addAuthor.html",{'form': form, 'message':message,'action':'add','type':'Author'})
 
 
 def deleteAuthor(request,pk):
@@ -149,7 +149,7 @@ def changeAuthor(request,pk):
             message = form.errors
     else:
         #deberia redirigir a la pagina de listados
-        return render(request,"principal.html",{'type':'Author','action':'Change'})
+        return render(request,"principal.html",{'type':'Author','action':'Change','form':form})
 
 #Book management
 
