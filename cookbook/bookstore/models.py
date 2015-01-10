@@ -4,16 +4,24 @@ class Editor(models.Model):
     name = models.CharField(max_length=20,blank=False, unique=True);
     status= models.BooleanField(default=False);
     
+    def __Str__(self):
+        return self.name
+    
     
 class Author(models.Model):
     name = models.CharField(max_length=20);
     surname = models.CharField(max_length=20);
     status = models.BooleanField(default=False);
 
+    def __str__(self):
+        return "%s - %s" % (self.name,self.surname)
     
 class Category(models.Model):
     name = models.CharField(max_length=20);
     status = models.BooleanField(default=False);
+    
+    def __str__(self):
+        return self.name
     
     
 class Book(models.Model):
@@ -25,3 +33,7 @@ class Book(models.Model):
     editors = models.ManyToManyField(Editor);
     categories = models.ManyToManyField(Category);
     status = models.BooleanField(default=False);
+    
+    def __str__(self):
+        return self.name
+    
