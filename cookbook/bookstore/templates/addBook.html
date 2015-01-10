@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content%}
-    <form action={% url 'addBook' %}>{% csrf_token%}
+    <form action={% url 'addBook' %} method="POST">{% csrf_token%}
         {{form.as_p}}
         <input type="submit" value="add book">
     </form>
