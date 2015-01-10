@@ -74,7 +74,7 @@ def addEditor(request):
         message = "New editor added successufully"
     else:
         message = form.errors
-    return render(request, "addEditor.html",{'form': form, 'message':message,'action':'add'})
+    return render(request, "addEditor.html",{'form': form, 'message':message,'action':'add','type':'Editor'})
 
 
 def deleteEditor(request,pk):
@@ -160,7 +160,7 @@ def addBook(request):
         message = "New book added successufully"
     else:
         message = form.errors
-    return render(request, "addBook.html",{'form': form, 'message':message,'action':'add'})
+    return render(request, "addBook.html",{'form': form, 'message':message,'action':'add','type':'Book'})
 
 
 def deleteBook(request,pk):
@@ -191,6 +191,6 @@ def changeBook(request,pk):
             message = form.errors
     else:
         #deberia redirigir a la pagina de listados
-        return render(request,"principal.html",{'type':'Book', 'action':'Change'})
+        return render(request,"change.html",{'type':'Book', 'action':'Change','form':form})
 
 
