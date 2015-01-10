@@ -4,7 +4,7 @@ class Editor(models.Model):
     name = models.CharField(max_length=20,blank=False, unique=True);
     status= models.BooleanField(default=False);
     
-    def __Str__(self):
+    def __str__(self):
         return self.name
     
     
