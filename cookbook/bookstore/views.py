@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 #from bookstore.forms import *
-from bookstore.forms import CategoryForm
+from bookstore.forms import *
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
@@ -91,7 +91,7 @@ def confirmDelete(request,pk):
         
 def listEditors(request):
     editors = Editor.objects.all()
-    return render(request,"list.html",{'type':'Editor','list':editors,'action':'List'})
+    return render(request,"listEditors.html",{'type':'Editor','list':editors,'action':'List'})
 
 
 def changeEditor(request,pk):
