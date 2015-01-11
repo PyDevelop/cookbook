@@ -105,7 +105,7 @@ def changeEditor(request,pk):
             message = form.errors
     else:
         form = EditorForm(instance=editor)
-    return render(request,"principal.html",{'form':form,'action':'Change','type':'Editor'})
+    return render(request,"change.html",{'form':form,'action':'Change','type':'Editor'})
 
 
 
@@ -145,11 +145,12 @@ def changeAuthor(request,pk):
         if form.is_valid():
             form.save()
             message = "changes saved"
-        else:
+            return HttpResponseRedirect(reverse('authors'))
             message = form.errors
     else:
+        message = "update the info"
         form= AuthorForm(instance=author)
-    return render(request,"principal.html",{'type':'Author','action':'Change','form':form})
+    return render(request,"changeAuthor.html",{'type':'Author','action':'Change','form':form,'message':message,'instance':author.pk})
 
 #Book management
 
