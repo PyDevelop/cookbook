@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-#from bookstore.forms import *
 from bookstore.forms import *
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -51,8 +50,8 @@ def listCategories(request):
 
 
 def changeCategory(request,pk):
+    category = get_object_or_404(Category,id=pk)
     if request.method == 'POST':
-        category = get_object_or_404(Category,id=pk)
         form = CategoryForm(data=request.POST, instance=category)
         if form.is_valid():
             form.save()
@@ -62,7 +61,7 @@ def changeCategory(request,pk):
             message = form.errors 
     else:
         form =CategoryForm(instance=category)
-    return render(request,"change.html",{'form':form, 'type':'Category', 'action':'Change'})
+    return render(request,"change.html",{'instance':category.pk,'form':form, 'type':'Category', 'action':'Change'})
 
         
 # Editor management
