@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {%for i in list%}
-{{i.name}}<br>
+<a href="{% url 'changeCategory' i.pk %}">{{i.name}}</a><br>
 {%empty%}
     <p> No {{type}}s found </p>
 {% endfor%}
