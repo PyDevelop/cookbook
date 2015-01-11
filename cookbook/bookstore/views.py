@@ -61,8 +61,8 @@ def changeCategory(request,pk):
         else:
             message = form.errors 
     else:
-        #deberia redirigir a la pagina de listados
-        return render(request,"change.html",{'form':form, 'type':'Category', 'action':'Change'})
+        form =CategoryForm(instance=category)
+    return render(request,"change.html",{'form':form, 'type':'Category', 'action':'Change'})
 
         
 # Editor management
@@ -97,15 +97,15 @@ def listEditors(request):
 def changeEditor(request,pk):
     if request.method == 'POST':
         editor = get_object_or_404(Editor,id=pk)
-        form = CategoryForm(data=request.POST, instance=editor)
+        form = EditorForm(data=request.POST, instance=editor)
         if form.is_valid():
             form.save()
             message = "changes saved"
         else:
             message = form.errors
     else:
-        #deberia redirigir a la pagina de listados
-        return render(request,"principal.html",{'form':form,'action':'Change','type':'Editor'})
+        form = EditorForm(instance=editor)
+    return render(request,"principal.html",{'form':form,'action':'Change','type':'Editor'})
 
 
 
@@ -139,8 +139,8 @@ def listAuthors(request):
 
 
 def changeAuthor(request,pk):
-    if request.method == 'POST':
-        author = get_object_or_404(Author,id=pk)
+    author = get_object_or_404(Author,id=pk)
+    if request.method == 'POST':       
         form = AuthorForm(data=request.POST, instance=author)
         if form.is_valid():
             form.save()
@@ -148,8 +148,8 @@ def changeAuthor(request,pk):
         else:
             message = form.errors
     else:
-        #deberia redirigir a la pagina de listados
-        return render(request,"principal.html",{'type':'Author','action':'Change','form':form})
+        form= AuthorForm(instance=author)
+    return render(request,"principal.html",{'type':'Author','action':'Change','form':form})
 
 #Book management
 
@@ -190,7 +190,7 @@ def changeBook(request,pk):
         else:
             message = form.errors
     else:
-        #deberia redirigir a la pagina de listados
-        return render(request,"change.html",{'type':'Book', 'action':'Change','form':form})
+        form = BookForm(instance=book)
+    return render(request,"change.html",{'type':'Book', 'action':'Change','form':form})
 
 
