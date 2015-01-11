@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<p>check the {{type}}s that you want delete</p>
+
+<form method="POST" action="{% url 'deleteCategory' %}">
+    {% for i in list %}
+        <input type="checkbox" name="selected" value="{{i.pk}}">
+    {% empty %}
+        <p> No {{type}}s found </p>
+    {% endfor %}
+    <input type="submit" value="delete">
+</form>
+
+
+
+{% endblock %}
