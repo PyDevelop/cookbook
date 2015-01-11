@@ -35,6 +35,7 @@ def addCategory(request):
     
 def deleteCategory(request,pk):
     instance = get_object_or_404(Category,id=pk)
+    #request.POST.getlist('selected')
     #podria poner elementos como si tiene dependencias o no, bien podria ser un metodo de clase
     return render(request,"confirmation.html",{'type':'Category','element':instance})
 
