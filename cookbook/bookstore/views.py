@@ -32,18 +32,23 @@ def addCategory(request):
         form = CategoryForm()
     return render_to_response("addCategory.html",{'formulario': form, 'type':'Category','action':'add'},context_instance=RequestContext(request))
     
-def deleteCategory(request,pk):
-    instance = get_object_or_404(Category,id=pk)
-    #request.POST.getlist('selected')
-    #podria poner elementos como si tiene dependencias o no, bien podria ser un metodo de clase
-    return render(request,"confirmation.html",{'type':'Category','element':instance})
+    
+def deleteCategory(request):
+    lista = Category.objects.all()
+    return render(request,"deleteCategory.html",{'type':'Category','lista':lista})
 
-def confirmDelete(request,pk):
-    instance = get_object_or_404(Category,id=pk)
-    categories = Category.objects.get(pk=pk)
-    categories.update(status=True)
-    for i in categories:
-        i.save()
+
+'''
+def deleteCategory(request):
+    #instance = get_object_or_404(Category,id=pk)
+    lista = request.POST.getlist('selected')
+    #podria poner elementos como si tiene dependencias o no, bien podria ser un metodo de clase
+    return render(request,"confirmation.html",{'type':'Category','lista':lista})
+'''
+def confirmDelete(request):
+    lista = request.POST.getlist('selected')
+    return render(request,"confirmation.html",{'type':'Category','lista':lista})
+    
         
 def listCategories(request):
     categories = Category.objects.all()
@@ -81,14 +86,14 @@ def deleteEditor(request,pk):
     instance = get_object_or_404(Editor,id=pk)
     #podria poner elementos como si tiene dependencias o no, bien podria ser un metodo de clase
     return render(request,"confirmation.html",{'type':'Editor','element':instance,'action':'Delete Confirmation'})
-
+'''
 def confirmDelete(request,pk):
     instance = get_object_or_404(Editor,id=pk)
     editors = Editor.objects.get(pk=pk)
     editors.update(status=True)
     for i in editors:
         i.save()
-        
+'''        
 def listEditors(request):
     editors = Editor.objects.all()
     return render(request,"listEditors.html",{'type':'Editor','list':editors,'action':'List'})
@@ -125,14 +130,14 @@ def deleteAuthor(request,pk):
     instance = get_object_or_404(Author,id=pk)
     #podria poner elementos como si tiene dependencias o no, bien podria ser un metodo de clase
     return render(request,"confirmation.html",{'type':'Author','element':instance,'action':'Delete confirmation'})
-
+'''
 def confirmDelete(request,pk):
     instance = get_object_or_404(Author,id=pk)
     authors = Author.objects.get(pk=pk)
     authors.update(status=True)
     for i in authors:
         i.save()
-        
+'''        
 def listAuthors(request):
     authors = Author.objects.all()
     return render(request,"listAuthors.html",{'type':'Author','list':authors,'action':'List'})
@@ -169,13 +174,14 @@ def deleteBook(request,pk):
     #podria poner elementos como si tiene dependencias o no, bien podria ser un metodo de clase
     return render(request,"confirmation.html",{'type':'Book','element':instance,'action':'Delete confirmation'})
 
+'''
 def confirmDelete(request,pk):
     instance = get_object_or_404(Book,id=pk)
     books = Book.objects.get(pk=pk)
     books.update(status=True)
     for i in books:
         i.save()
-        
+'''        
 def listBooks(request):
     books= Book.objects.all()
     return render(request,"list.html",{'type':'Book','list':books,'action':'List'})
