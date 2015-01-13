@@ -37,14 +37,6 @@ def deleteCategory(request):
     lista = Category.objects.all()
     return render(request,"deleteCategory.html",{'type':'Category','lista':lista})
 
-
-'''
-def deleteCategory(request):
-    #instance = get_object_or_404(Category,id=pk)
-    lista = request.POST.getlist('selected')
-    #podria poner elementos como si tiene dependencias o no, bien podria ser un metodo de clase
-    return render(request,"confirmation.html",{'type':'Category','lista':lista})
-'''
 def confirmDelete(request):
     lista = request.POST.getlist('selected')
     return render(request,"confirmation.html",{'type':'Category','lista':lista})
