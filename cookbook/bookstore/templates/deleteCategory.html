@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<p>check the {{type}}s that you want delete</p>
+
+<form class ="check-form" method="POST" action="{% url "confirmDelete" %}">
+    {%csrf_token%}
+    {% for i in lista %}
+        <input type="checkbox" name="selected" value="{{i.name}}" disabled>{{i.name}}<br>
+    {% empty %}
+        <p> No {{type}}s found </p>
+    {% endfor %}
+    
+    <input type="submit" value="delete">
+</form>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+    $(".check-form").submit(function(){
+        var checked = $("input[type='checkbox']:checked").length;
+        alert(checked);
+        if (checked == "0"){
+            $(".message").text("select a item");
+            return false;
+        }
+        else{
+            alert("OK");
+            return true;
+        }
+    })
+
+</script>
+
+{% endblock %}
