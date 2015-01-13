@@ -1,8 +1,9 @@
 from django.db import models
 
 class Editor(models.Model):
-    name = models.CharField(max_length=20,blank=False, unique=True);
-    status= models.BooleanField(default=False);
+    name = models.CharField(max_length=20,blank=False, unique=True)
+    status= models.BooleanField(default=False)
+    dependencies= models.BooleanField(default=False)
     
     def __str__(self):
         return self.name
@@ -18,7 +19,8 @@ class Editor(models.Model):
 class Author(models.Model):
     name = models.CharField(max_length=20);
     surname = models.CharField(max_length=20);
-    status = models.BooleanField(default=False);
+    status = models.BooleanField(default=False)
+    dependencies= models.BooleanField(default=False)
 
     def __str__(self):
         return "%s - %s" % (self.name,self.surname)
@@ -34,6 +36,7 @@ class Author(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=20);
     status = models.BooleanField(default=False);
+    dependencies= models.BooleanField(default=False)
     
     def __str__(self):
         return self.name
