@@ -22,13 +22,17 @@ urlpatterns = patterns('bookstore.views',
                        url(r'^deleteBook/(?P<pk>\d+)',"deleteBook",name="deleteBook"),
                        url(r'^deleteAuthor/(?P<pk>\d+)',"deleteAuthor",name="deleteAuthor"),
                        url(r'^deleteEditor/(?P<pk>\d+)',"deleteEditor",name="deleteEditor"),
-                       url(r'^deleteCategory/(?P<pk>\d+)',"deleteCategory",name="deleteCategory"),
+                       url(r'^deleteCategory',"deleteCategory",name="deleteCategory"),
                        
                        #changing views
                        url(r'^changeBook/(?P<pk>\d+)',"changeBook",name="changeBook"),
                        url(r'^changeAuthor/(?P<pk>\d+)',"changeAuthor",name="changeAuthor"),
                        url(r'^changeEditor/(?P<pk>\d+)',"changeEditor",name="changeEditor"),
                        url(r'^changeCategory/(?P<pk>\d+)',"changeCategory",name="changeCategory"),
+                       
+                       
+                       #delete confirmation
+                       url(r'^confirmDelete/$',"confirmDelete",name="confirmDelete"),
                        
                        url(r'^admnistration/',"administrator",name="administrator"),
                       
