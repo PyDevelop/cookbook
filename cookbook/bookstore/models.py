@@ -8,9 +8,9 @@ class Editor(models.Model):
     def __str__(self):
         return self.name
     
-    def has_dependencies(self,pk):
-        editor = self.objects.get(id=pk)
-        books_related = editor_set.all().count()
+    def has_dependencies(self):
+        editor = Editor.objects.get(id=self.pk)
+        books_related = editor.book_set.all().count()
         if books_related > 0:
             return True
         else:
@@ -25,9 +25,9 @@ class Author(models.Model):
     def __str__(self):
         return "%s - %s" % (self.name,self.surname)
     
-    def has_dependencies(self,pk):
-        author = self.objects.get(id=pk)
-        books_related =author_set.all().count()
+    def has_dependencies(self):
+        author = Author.objects.get(id=self.pk)
+        books_related =author.book_set.all().count()
         if books_related > 0:
             return True
         else:
@@ -43,11 +43,11 @@ class Category(models.Model):
     
     def has_dependencies(self,pk):
         categories = self.objects.get(id=pk)
-        books_related = categories_set.all().count()
+        books_related = categories.book_set.all().count()
         if books_related > 0:
             return True
         else:
-            return FAlse
+            return False
         
 
 class Book(models.Model):
