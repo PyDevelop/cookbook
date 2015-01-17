@@ -193,3 +193,9 @@ def changeBook(request,pk):
     return render(request,"change.html",{'type':'Book', 'action':'Change','form':form})
 
 
+def ajaxRequest(request):
+    if request.method == 'POST':
+        key = request.POST['id']
+        name = Category.objects.get(id=key)
+        data = serializers.serialize('json',categories,fields=('nombre',))
+        return HttpResponse(data,mimetype='application/json')
