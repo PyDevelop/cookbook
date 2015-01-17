@@ -1,8 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
 {%for i in list%}
-<a href="{% url 'changeCategory' i.pk %}">{{i.name}}</a><br>
+<a value={{i.pk}} class="category">{{i.name}}</a><br>
 {%empty%}
     <p> No {{type}}s found </p>
 {% endfor%}
+
+<div class="info"></div>
+
+<script>
+    $('.category').click(moreInfo);
+    function moreInfo(){
+        var variable = $(this).val();
+        $.ajax({
+            data: {'id':id},
+            url:{% url 'ajaxRequest' %},
+            type: 'POST',
+            success:function (data){
+                var html ="";
+                for(var i =0;i=data.length;i++){
+                    //debo generar los campos que se muestran
+                    html ='<p>'+data[i].field.name+'</p>';
+                
+                }
+            $('.info').html(html);
+            }
+        
+        
+        })
+    
+    }
+
+
+</script>
+
 {% endblock%}
