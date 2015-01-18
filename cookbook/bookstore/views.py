@@ -196,6 +196,6 @@ def changeBook(request,pk):
 def ajaxRequest(request):
     if request.method == 'POST':
         key = request.POST['id']
-        name = Category.objects.get(id=key)
-        data = serializers.serialize('json',categories,fields=('nombre',))
+        category = Category.objects.get(id=key)
+        data = serializers.serialize('json',categories,fields=('name',))
         return HttpResponse(data,mimetype='application/json')
