@@ -35,7 +35,12 @@ urlpatterns = patterns('bookstore.views',
                        url(r'^confirmDelete/$',"confirmDelete",name="confirmDelete"),
                        
                        url(r'^admnistration/',"administrator",name="administrator"),
+                       
+                       
+                       #ajax request
+                       url(r'^categories',"ajaxRequest",name="ajaxRequest"),
                       
                       
+                
                       
 )
