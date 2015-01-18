@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {%for i in list%}
-<a value={{i.pk}} class="category">{{i.name}}</a><br>
+<p value={{i.pk}} class="category">{{i.name}}</p><br>
 {%empty%}
     <p> No {{type}}s found </p>
 {% endfor%}
@@ -9,7 +9,7 @@
 <div class="info"></div>
 
 <script>
-    $('.category').click(moreInfo);
+    $('.category').click(
     function moreInfo(){
         var variable = $(this).val();
         $.ajax({
@@ -30,7 +30,7 @@
         })
     
     }
-
+    )
 
 </script>
 
