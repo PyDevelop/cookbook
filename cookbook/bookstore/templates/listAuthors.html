@@ -2,7 +2,15 @@
 {% block content %}
 {%for i in list%}
 <a href="{% url 'changeAuthor' i.pk %}">{{i.name}} - {{i.surname}} </a><br>
+<p id="parrafo"></p>
 {%empty%}
     <p> No {{type}}s found </p>
 {% endfor%}
+
+<button id=""> Get </button>
+<script>
+    $("button").on("click",function(){
+        alert("fuck!");
+    });
+</script>
 {% endblock%}
